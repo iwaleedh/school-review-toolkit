@@ -21,7 +21,9 @@ export function useChecklistData(fileName) {
                 setError(null);
 
                 // Fetch the CSV file from the Checklist folder
-                const response = await fetch(`/Checklist/${fileName}`);
+                // Use import.meta.env.BASE_URL for GitHub Pages compatibility
+                const basePath = import.meta.env.BASE_URL || '/';
+                const response = await fetch(`${basePath}Checklist/${fileName}`);
                 if (!response.ok) {
                     throw new Error(`Failed to load ${fileName}: ${response.status}`);
                 }
